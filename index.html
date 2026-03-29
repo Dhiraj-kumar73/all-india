@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechEraX Hub | India's Mega Student Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo" onclick="location.reload()">TechEraX <span>Hub</span></div>
+       <button class="upload-btn" onclick="openUpload()">Upload Notes</button>
+    </nav>
+
+    <header class="hero" id="heroSec">
+        <h1>All India University Portal</h1>
+        <p>Bharat ki 100+ Universities ke Syllabus aur Notes yahan milenge.</p>
+        
+        <div class="search-area">
+            <div class="search-box">
+                <i class="fa-solid fa-university"></i>
+                <input type="text" id="uInput" placeholder="Apni University Search karein (AKU, DU, PPU...)" onkeyup="filterUniv()" onclick="showUniv()">
+                <ul id="uList" class="univ-list"></ul>
+            </div>
+        </div>
+        <p id="status" style="margin-top:15px; font-weight:bold; color:#fbbf24;">Select University to Start</p>
+    </header>
+
+    <main class="container">
+        <section id="univPortal" style="display:none;">
+            <button class="back-btn" onclick="location.reload()"><i class="fa-solid fa-arrow-left"></i> Change University</button>
+            <div class="portal-header">
+                <h1 id="pName">University Name</h1>
+                <p id="pState">Location Details</p>
+            </div>
+            <h2 class="section-title">Available Courses</h2>
+            <div class="grid" id="portalCourseGrid"></div>
+        </section>
+
+        <section id="detailView" style="display:none;">
+            <button class="back-btn" onclick="backToPortal()"><i class="fa-solid fa-arrow-left"></i> Back to Courses</button>
+            <h2 id="viewTitle" class="section-title"></h2>
+            <div class="grid" id="detailGrid"></div>
+        </section>
+
+        <div id="courseView">
+            <h2 class="section-title">Our Top Courses</h2>
+            <div class="grid" id="mainCourseGrid"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 TechEraX Hub - Created by Dhiraj Kumar (Patna)</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
