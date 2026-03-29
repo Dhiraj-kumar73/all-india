@@ -11,9 +11,20 @@
 <body>
 <!-- hello -->
     <nav class="navbar">
-        <div class="logo" onclick="location.reload()">TechEraX <span>Hub</span></div>
-       <button class="upload-btn" onclick="openUpload()">Upload Notes</button>
-    </nav>
+    <div class="logo" onclick="location.reload()">TechEraX <span>Hub</span></div>
+    
+    <div class="nav-right">
+        <button class="upload-btn" onclick="openUpload()">Upload Notes</button>
+        
+        <button id="theme-toggle" class="theme-btn">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
+</nav>
+
+<div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+</div>
 
     <header class="hero" id="heroSec">
         <h1>All India University Portal</h1>
@@ -55,6 +66,22 @@
     <footer>
         <p>© 2026 TechEraX Hub - Created by Dhiraj Kumar (Patna)</p>
     </footer>
+
+    <button id="backToTop" class="back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+<!--social  -->
+<div class="social-float">
+    <a href="https://wa.me/7367807523" class="social-item whatsapp" target="_blank" title="WhatsApp Us">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="https://facebook.com/your-page" class="social-item facebook" target="_blank" title="Follow on Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com/your-profile" class="social-item instagram" target="_blank" title="Follow on Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+</div>
 
     <script src="script.js"></script>
 </body>

@@ -218,3 +218,77 @@ function init() {
 window.onclick = (e) => { if (!e.target.matches('#uInput')) document.getElementById('uList').style.display = "none"; }
 init();
 
+
+// TechEraX Hub - Dark Mode Logic
+const themeBtn = document.getElementById('theme-toggle');
+const body = document.body;
+const icon = themeBtn.querySelector('i');
+
+// 1. पेज लोड होते ही पुरानी सेटिंग चेक करें
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('techerax-theme');
+    
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        icon.classList.replace('fa-moon', 'fa-sun');
+    }
+});
+themeBtn.addEventListener('click', () => {
+    // 'dark-mode' क्लास को जोड़ें या हटाएँ
+    body.classList.toggle('dark-mode');
+
+    // अगर डार्क मोड चालू है
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('techerax-theme', 'dark'); 
+    } 
+    // अगर लाइट मोड चालू है
+    else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('techerax-theme', 'light');
+    }
+});
+
+/* ===========================================
+   BACK TO TOP BUTTON LOGIC
+   =========================================== */
+
+const backToTopBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTopBtn.style.display = "flex";
+        backToTopBtn.style.opacity = "1";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+});
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Scroll Progress Bar (पढ़ाई का ट्रैक)
+window.onscroll = function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    document.getElementById("myBar").style.width = scrolled + "%";
+};
+
+// social
+// Social Icons Fade-in Animation
+document.addEventListener('DOMContentLoaded', () => {
+    const socialItems = document.querySelectorAll('.social-item');
+    socialItems.forEach((item, index) => {
+        item.style.opacity = "0";
+        item.style.transform = "translateX(-20px)";
+        
+        setTimeout(() => {
+            item.style.transition = "all 0.5s ease";
+            item.style.opacity = "1";
+            item.style.transform = "translateX(0)";
+        }, 200 * (index + 1));
+    });
+});
