@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,32 +9,80 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<!-- hello -->
-    <nav class="navbar">
-    <div class="logo" onclick="location.reload()">TechEraX <span>Hub</span></div>
-    
-    <div class="nav-right">
-        <button class="upload-btn" onclick="openUpload()">Upload Notes</button>
-        
-        <button id="theme-toggle" class="theme-btn">
-            <i class="fa-solid fa-moon"></i>
-        </button>
-    </div>
-</nav>
 
-<div class="progress-container">
-    <div class="progress-bar" id="myBar"></div>
-</div>
+<body>
+    <!-- hello -->
+    <nav class="navbar">
+        <div class="logo" onclick="location.reload()">TechEraX <span>Hub</span></div>
+
+        <div class="nav-right">
+            <!-- UPLOAD MODAL -->
+            <div id="uploadModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeUpload()">&times;</span>
+                    <h3>🚀 Upload Your Notes</h3>
+
+                    <form id="uploadForm">
+                        <input type="text" id="uName" placeholder="Your Name" required>
+                        <input list="univOptions" id="uCollege" placeholder="Select University (AKU, DU, PPU...)"
+                            required>
+                        <datalist id="univOptions">
+                            <option value="Aryabhatta Knowledge University (AKU)">
+                            <option value="Patliputra University (PPU)">
+                            <option value="Patna University (PU)">
+                            <option value="Delhi University (DU)">
+                            <option value="Magadh University (MU)">
+                            <option value="Lalit Narayan Mithila University (LNMU)">
+                            <option value="Babasaheb Bhimrao Ambedkar Bihar University (BRABU)">
+                            <option value="Veer Kunwar Singh University (VKSU)">
+                        </datalist>
+                        <select> id="uCourse" onchange="updateSemesters()" required>
+                            <option value="">Select Course</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BTECH">BTECH</option>
+                            <option value="NURSING">B.Sc NURSING</option>
+                            <option value="BPHARMA">B.PHARMA</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BMS">BMS</option>
+                            <option value="BBE">BBE</option>
+                        </select>
+
+                        <select id="uSem" onchange="updateSubjects()" disabled required>
+                            <option value="">Select Semester</option>
+                        </select>
+
+                        <select id="uSubject" disabled required>
+                            <option value="">Select Subject</option>
+                        </select>
+
+                        <input type="file" id="uFile" required>
+                        <button type="submit" class="submit-btn">Upload 🚀</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Upload Button -->
+            <button class="upload-btn" onclick="openUpload()">Upload Notes</button>
+
+            <button id="theme-toggle" class="theme-btn">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
 
     <header class="hero" id="heroSec">
         <h1>All India University Portal</h1>
         <p>Bharat ki 100+ Universities ke Syllabus aur Notes yahan milenge.</p>
-        
+
         <div class="search-area">
             <div class="search-box">
                 <i class="fa-solid fa-university"></i>
-                <input type="text" id="uInput" placeholder="Apni University Search karein (AKU, DU, PPU...)" onkeyup="filterUniv()" onclick="showUniv()">
+                <input type="text" id="uInput" placeholder="Apni University Search karein (AKU, DU, PPU...)"
+                    onkeyup="filterUniv()" onclick="showUniv()">
                 <ul id="uList" class="univ-list"></ul>
             </div>
         </div>
@@ -42,7 +91,8 @@
 
     <main class="container">
         <section id="univPortal" style="display:none;">
-            <button class="back-btn" onclick="location.reload()"><i class="fa-solid fa-arrow-left"></i> Change University</button>
+            <button class="back-btn" onclick="location.reload()"><i class="fa-solid fa-arrow-left"></i> Change
+                University</button>
             <div class="portal-header">
                 <h1 id="pName">University Name</h1>
                 <p id="pState">Location Details</p>
@@ -52,7 +102,8 @@
         </section>
 
         <section id="detailView" style="display:none;">
-            <button class="back-btn" onclick="backToPortal()"><i class="fa-solid fa-arrow-left"></i> Back to Courses</button>
+            <button class="back-btn" onclick="backToPortal()"><i class="fa-solid fa-arrow-left"></i> Back to
+                Courses</button>
             <h2 id="viewTitle" class="section-title"></h2>
             <div class="grid" id="detailGrid"></div>
         </section>
@@ -68,21 +119,38 @@
     </footer>
 
     <button id="backToTop" class="back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-</button>
-<!--social  -->
-<div class="social-float">
-    <a href="https://wa.me/7367807523" class="social-item whatsapp" target="_blank" title="WhatsApp Us">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    <a href="https://facebook.com/your-page" class="social-item facebook" target="_blank" title="Follow on Facebook">
-        <i class="fa-brands fa-facebook-f"></i>
-    </a>
-    <a href="https://instagram.com/your-profile" class="social-item instagram" target="_blank" title="Follow on Instagram">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-</div>
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <!--social  -->
+    <div class="social-float">
+        <a href="https://wa.me/7367807523" class="social-item whatsapp" target="_blank" title="WhatsApp Us">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://facebook.com/your-page" class="social-item facebook" target="_blank"
+            title="Follow on Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com/your-profile" class="social-item instagram" target="_blank"
+            title="Follow on Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUpload()">&times;</span>
+            <h3>🚀 Share Notes & Get Credit</h3>
+            <p>अपना नाम और कॉलेज लिखें, हम आपको क्रेडिट देंगे!</p>
+            <form id="uploadForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="text" placeholder="College Name" required>
+                <input type="file" accept=".pdf,.jpg" required>
+                <button type="submit" class="submit-btn">Send to TechEraX</button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
